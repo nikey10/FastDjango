@@ -1,10 +1,16 @@
+# Run at once
+- In the project root directory, build the Docker container
+    ```
+    docker-compose up --build
+    ```
+
 # FastAPI Application
 
 This is a simple CRUD application using FastAPI and PostgreSQL.
 
 ## Setup
 - Build the Docker container with `docker-compose up --build`.
-- Access the web interface at `http://localhost:8000`.
+- Test API at `http://localhost:8000/docs`.
 
 # Django Frontend for FastAPI Backend
 
