@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+print("----- schemas.py")
+
 class BookBase(BaseModel):
     title: str
     author: str
@@ -10,6 +12,3 @@ class BookCreate(BookBase):
 
 class Book(BookBase):
     id: int
-
-    class Config:
-        orm_mode = True
