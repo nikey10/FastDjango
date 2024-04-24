@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import render, redirect
 
-API_URL = "http://localhost:8000/books/"
+API_URL = "http://localhost:8001/books/"
 
 def book_list(request):
     response = requests.get(API_URL)
