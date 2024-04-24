@@ -1,7 +1,10 @@
+import os
 import requests
 from django.shortcuts import render, redirect
 
-API_URL = "http://localhost:8001/books/"
+API_URL = os.getenv("API_URL", "http://localhost:8001/books/")
+
+print(f"----- API_URL: {API_URL}")
 
 def book_list(request):
     response = requests.get(API_URL)

@@ -1,0 +1,35 @@
+services:
+  web:
+    build:
+      context: ./django-app
+    ports:
+      - "8000:8000"
+    environment:
+      - API_URL=http://api:8001/books/
+    volumes:
+      - ./django-app:/app
+    command: python manage.py runserver 0.0.0.0:8000
+  api:
+    build: 
+      context: ./fastapi-app
+    ports:
+      - "8001:8001"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/fastapi_db
+    volumes:
+      - ./fastapi-app:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8001
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=fastapi_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+volumes:
+  postgres_data:
